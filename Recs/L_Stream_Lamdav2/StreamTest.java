@@ -1,12 +1,14 @@
 package WPackage;
 
 import Vpackage.A_Pojo;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class StreamTest {
 
@@ -18,7 +20,7 @@ public class StreamTest {
             add(new A_Pojo("BB_name",200));
             add(new A_Pojo("CCCname",300));
             add(new A_Pojo("d__name",300));
-            add(new A_Pojo("d__name",300));
+            add(new A_Pojo("d__name2",300));
         }};
         //filter
         list.stream().filter(a_pojo -> a_pojo.getAge()>200).forEach(System.out::println);
@@ -70,5 +72,11 @@ public class StreamTest {
         }else {
             System.out.println("no such element");
         }
+        //lamda index confirm
+        int asInt = IntStream.range(0, list.size()).filter(x -> list.get(x).getAge() == 300).findAny().getAsInt();
+        System.out.println("int: "+asInt);
+        //list to map
+        Map<String, Integer> collect1 = list.stream().collect(Collectors.toMap(x -> x.getName(), x -> x.getAge()));
+        System.out.println(collect1);
     }
 }
