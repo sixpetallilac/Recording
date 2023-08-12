@@ -76,7 +76,8 @@ public class StreamTest {
         int asInt = IntStream.range(0, list.size()).filter(x -> list.get(x).getAge() == 300).findAny().getAsInt();
         System.out.println("int: "+asInt);
         //list to map
-        Map<String, Integer> collect1 = list.stream().collect(Collectors.toMap(x -> x.getName(), x -> x.getAge()));
+        Map<Integer, A_Pojo> collect1 = list.stream().collect(Collectors.toMap(x -> x.getAge(), x->x,(x1,x2)->x1));
         System.out.println(collect1);
+
     }
 }
